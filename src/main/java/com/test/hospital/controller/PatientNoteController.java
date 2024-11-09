@@ -29,7 +29,7 @@ public class PatientNoteController {
     })
     @GetMapping
     public ResponseEntity<PagedModel<PatientNoteDto>> getPageable(@ParameterObject Pageable pageable) {
-        Page<PatientNoteDto> patientNotes = patientNoteService.getList(pageable);
+        Page<PatientNoteDto> patientNotes = patientNoteService.getAllPageable(pageable);
         return ResponseEntity.ok(new PagedModel<>(patientNotes));
     }
 
@@ -50,8 +50,8 @@ public class PatientNoteController {
             @ApiResponse(responseCode = "404", description = "Patient notes not found")
     })
     @GetMapping("/by-ids")
-    public ResponseEntity<List<PatientNoteDto>> getMany(@RequestParam List<Long> ids) {
-        var result = patientNoteService.getMany(ids);
+    public ResponseEntity<List<PatientNoteDto>> getAllByIds(@RequestParam List<Long> ids) {
+        var result = patientNoteService.getAllByIds(ids);
         return ResponseEntity.ok(result);
     }
 

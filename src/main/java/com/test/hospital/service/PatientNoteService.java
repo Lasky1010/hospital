@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface PatientNoteService {
 
-    Page<PatientNoteDto> getList(Pageable pageable);
+    Page<PatientNoteDto> getAllPageable(Pageable pageable);
 
     PatientNoteDto getById(Long id);
 
-    List<PatientNoteDto> getMany(List<Long> ids);
+    List<PatientNoteDto> getAllByIds(List<Long> ids);
 
     PatientNoteDto create(PatientNoteDto patientNote);
 

@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface PatientProfileService {
 
-    Page<PatientProfileDto> getList(Pageable pageable);
+    Page<PatientProfileDto> getAllPageable(Pageable pageable);
 
     PatientProfileDto getById(Long id);
 
-    List<PatientProfileDto> getManyByGuid(List<String> ids);
+    List<PatientProfileDto> getAllByGuids(List<String> ids);
 
     PatientProfileDto create(PatientProfileDto patientProfile);
 

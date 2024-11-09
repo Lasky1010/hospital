@@ -31,7 +31,7 @@ public class PatientNoteServiceImpl implements PatientNoteService {
     private final CompanyUserMapper companyUserMapper;
 
     @Override
-    public Page<PatientNoteDto> getList(Pageable pageable) {
+    public Page<PatientNoteDto> getAllPageable(Pageable pageable) {
         var paged = patientNoteRepository.findAll(pageable);
         return patientNoteMapper.toDtoPage(paged);
     }
@@ -44,7 +44,7 @@ public class PatientNoteServiceImpl implements PatientNoteService {
     }
 
     @Override
-    public List<PatientNoteDto> getMany(List<Long> ids) {
+    public List<PatientNoteDto> getAllByIds(List<Long> ids) {
         var allById = patientNoteRepository.findAllById(ids);
         if (allById.isEmpty()) {
             throw new PatientNoteNotFoundException(NOTE_NOT_FOUND);

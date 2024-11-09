@@ -27,7 +27,7 @@ public class PatientProfileController {
     })
     @GetMapping
     public ResponseEntity<PagedModel<PatientProfileDto>> getPageable(@ParameterObject Pageable pageable) {
-        var patientProfiles = patientProfileService.getList(pageable);
+        var patientProfiles = patientProfileService.getAllPageable(pageable);
         return ResponseEntity.ok(new PagedModel<>(patientProfiles));
     }
 

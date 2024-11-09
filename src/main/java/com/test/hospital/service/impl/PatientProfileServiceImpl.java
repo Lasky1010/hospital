@@ -25,7 +25,7 @@ public class PatientProfileServiceImpl implements PatientProfileService {
     private final PatientProfileMapper patientProfileMapper;
 
     @Override
-    public Page<PatientProfileDto> getList(Pageable pageable) {
+    public Page<PatientProfileDto> getAllPageable(Pageable pageable) {
         var paged = patientProfileRepository.findAll(pageable);
         return patientProfileMapper.toDtoPage(paged);
     }
@@ -38,7 +38,7 @@ public class PatientProfileServiceImpl implements PatientProfileService {
     }
 
     @Override
-    public List<PatientProfileDto> getManyByGuid(List<String> guids) {
+    public List<PatientProfileDto> getAllByGuids(List<String> guids) {
         var allById = patientProfileRepository.findAllByOldClientGuidsFromLegacyIn(guids);
         if (allById.isEmpty()) {
             throw new PatientNotFoundException(PATIENT_NOT_FOUND);

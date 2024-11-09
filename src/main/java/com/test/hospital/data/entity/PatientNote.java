@@ -26,9 +26,6 @@ public class PatientNote extends BaseEntity {
 
     private String note;
 
-    @Column(name = "old_note_guid")
-    private String oldNoteGuid;
-
     @ManyToOne
     @JoinColumn(name = "created_by_user_id")
     private CompanyUser createdBy;

@@ -1,8 +1,8 @@
 legacy:
-  uri: http://localhost:8081/api
+  uri: ${LEGACY_URI:http://localhost:8081/api}
 
-dateFrom: "10-15-1999"
-dateTo: "08-11-2024"
+dateFrom: ${DATEFROM:10-15-1999}
+dateTo: ${DATETO:08-11-2024}
 
 server:
   servlet:
@@ -18,3 +18,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
+
+  flyway:
+    enabled: false

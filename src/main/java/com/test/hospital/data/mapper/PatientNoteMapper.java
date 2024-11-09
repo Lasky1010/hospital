@@ -1,7 +1,10 @@
 package com.test.hospital.data.mapper;
 
 import com.test.hospital.data.dto.PatientNoteDto;
+import com.test.hospital.data.dto.legacy.NoteLegacy;
+import com.test.hospital.data.entity.CompanyUser;
 import com.test.hospital.data.entity.PatientNote;
+import com.test.hospital.data.entity.PatientProfile;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
@@ -22,4 +25,15 @@ public interface PatientNoteMapper {
 
     List<PatientNoteDto> toDtoList(List<PatientNote> patientNoteList);
 
+    default PatientNote toEntityFromLegacyNote(NoteLegacy noteLegacy, CompanyUser companyUser, PatientProfile patientProfile) {
+        return PatientNote.builder()
+                .note(noteLegacy.comments())
+                .createdBy(companyUser)
+                .lastModifiedBy(companyUser)
+                .createdDateTime(noteLegacy.createdDateTime())
+                .lastModifiedDateTime(noteLegacy.modifiedDateTime())
+                .patientProfile(patientProfile)
+                .build();
+
+    }
 }
