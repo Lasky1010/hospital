@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql:9.1.0
+    restart: "always"
+    ports:
+      - "3307:3307"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: hospital
+    healthcheck:
+      test: mysqladmin ping -u root -p $$MYSQL_ROOT_PASSWORD
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
+  hospital:
+    image: hospital:latest
+    build: .
+    restart: "no"
+    ports:
+      - "8080:8080"
+    environment:
+      DATASOURCE_USERNAME: admin
+      DATASOURCE_PASSWORD: admin
+      MYSQL_HOST: localhost:3306
+      MYSQL_DB_NAME: hospital
+      LEGACY_URI: http://localhost:8081/api
+      DATEFROM: 10-15-1999
+      DATETO: 08-11-2024
+    depends_on:
+      - mysql
+volumes:
+  mysql_data:

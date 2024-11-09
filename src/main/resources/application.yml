@@ -12,12 +12,9 @@ spring:
     name:
       hospital
   datasource:
-    username: ${DATASOURCE_USERNAME:root}
-    password: ${DATASOURCE_PASSWORD:root}
-    url: jdbc:mysql://${MYSQL_HOST:localhost:3306}/${MYSQL_DB_NAME:hospital}
+    username: ${DATASOURCE_USERNAME:admin}
+    password: ${DATASOURCE_PASSWORD:admin}
+    url: jdbc:mysql://${MYSQL_HOST:localhost:3307}/${MYSQL_DB_NAME:hospital}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
-
-  flyway:
-    enabled: false
