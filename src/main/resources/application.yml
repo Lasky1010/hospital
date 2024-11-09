@@ -1,1 +1,20 @@
-spring.application.name=hospital
+legacy:
+  uri: http://localhost:8081/api
+
+dateFrom: "10-15-1999"
+dateTo: "08-11-2024"
+
+server:
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name:
+      hospital
+  datasource:
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:root}
+    url: jdbc:mysql://${MYSQL_HOST:localhost:3306}/${MYSQL_DB_NAME:hospital}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
